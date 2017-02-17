@@ -9,7 +9,24 @@
 #include <iostream>
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+    int board[8][8] = {0}, r = -1, c = 0, i = 0;
+nc: c++;
+//    if (c == 8)
+//        goto print;
+nr: r++;
+    if (r == 8)
+        goto backtrack;
+    for (i = 0; i < c; i++) {   // row test
+        if (board[r][i]) goto nr;
+    }
+    for (i = 0; i < r; i++) {
+        if (board[i][c]) goto nr;   // column test
+    }
+    for (i = 1; r >= 0 && c >= 0; i++) {
+        if (board[r - i][c - i]) goto nr;   // up diagonal
+    }
+    for (i = 0; r < 8 && c >= 0; i++) {
+        if (board[r + i][r - i]) goto nr;   // down diagonal
+    }
+//backtrack: c--;
 }
