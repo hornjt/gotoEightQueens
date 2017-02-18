@@ -35,15 +35,15 @@ nr:
     if (r == 8)
         goto backtrack;
     for (i = 0; i < c; i++) { // row test
-        if (board[r][i] == 1)
+        if (board[r][i])
             goto nr;
     }
     for (i = 1; r - i >= 0 && c - i >= 0; i++) { // up diagonal
-        if (board[r - i][c - i] == 1)
+        if (board[r - i][c - i])
             goto nr;
     }
     for (i = 1; r + i <= 7 && c - i >= 0; i++) { // down diagonal
-        if (board[r + i][c - i] == 1) {
+        if (board[r + i][c - i]) {
             goto nr;
         }
     }
