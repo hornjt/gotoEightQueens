@@ -20,45 +20,44 @@ void print(int array[8][8]) {
 }
 
 int main() {
-    int board[8][8] = {0}, r, c = 0, i = 0;
+    int board[8][8] = {0}, row, column, i;
 
     board[0][0] = 1;
-//    print(board);
 nc:
-    c++;
-    r = -1;
-    if (c == 8) {
+    column++;
+    row = -1;
+    if (column == 8) {
         goto print;
     }
 nr:
-    r++;
-    if (r == 8)
+    row++;
+    if (row == 8)
         goto backtrack;
-    for (i = 0; i < c; i++) { // row test
-        if (board[r][i])
+    for (i = 0; i < column; i++) { // row test
+        if (board[row][i])
             goto nr;
     }
-    for (i = 1; r - i >= 0 && c - i >= 0; i++) { // up diagonal
-        if (board[r - i][c - i])
+    for (i = 1; row - i >= 0 && column - i >= 0; i++) { // up diagonal
+        if (board[row - i][column - i])
             goto nr;
     }
-    for (i = 1; r + i <= 7 && c - i >= 0; i++) { // down diagonal
-        if (board[r + i][c - i]) {
+    for (i = 1; row + i <= 7 && column - i >= 0; i++) { // down diagonal
+        if (board[row + i][column - i]) {
             goto nr;
         }
     }
-    board[r][c] = 1;
+    board[row][column] = 1;
     goto nc;
 backtrack:
-    c--;
-    if (c == -1) {
+    column--;
+    if (column == -1) {
         return 0;
     }
-    r = 0;
-    while (board[r][c] != 1) {
-        r++;
+    row = 0;
+    while (board[row][column] != 1) {
+        row++;
     }
-    board[r][c] = 0;
+    board[row][column] = 0;
     goto nr;
 print:
     for (int j = 0; j < 8; j++) {
