@@ -19,15 +19,16 @@ void print(int array[8][8]) {
     cout << endl;
 }
 
-int main() {
+int findEightQueens(int startingRow, int startingColumn) {
     int board[8][8] = {0}, row, column, i;
-
-    board[0][0] = 1;
+    
+    board[startingRow][startingColumn] = 1;
 nc:
     column++;
     row = -1;
     if (column == 8) {
-        goto print;
+        print(board);
+        return 0;
     }
 nr:
     row++;
@@ -59,11 +60,9 @@ backtrack:
     }
     board[row][column] = 0;
     goto nr;
-print:
-    for (int j = 0; j < 8; j++) {
-        for(int k = 0; k < 8; k++) {
-            cout << board[j][k] << " ";
-        }
-        cout << endl;
-    }
+
+}
+
+int main() {
+    findEightQueens(3, 0);
 }
