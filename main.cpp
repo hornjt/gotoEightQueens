@@ -7,16 +7,7 @@
 //
 
 #include <iostream>
-
-//void print() {
-//    for (int j = 0; j < 8; j++) {
-//        for(int k = 0; k < 8; k++) {
-//            std::cout << board[j][k] << " ";
-//        }
-//        std::cout << std::endl;
-//    }
-//    std::cout << std::endl;
-//}
+using namespace std;
 
 int main() {
     int board[8][8] = {0}, r = -1, c = 0, i = 0;
@@ -24,15 +15,15 @@ int main() {
     board[0][0] = 1;
     for (int j = 0; j < 8; j++) {
         for(int k = 0; k < 8; k++) {
-            std::cout << board[j][k] << " ";
+            cout << board[j][k] << " ";
         }
-        std::cout << std::endl;
+        cout << endl;
     }
-    std::cout << std::endl;
+    cout << endl;
 nc:
     c++;
     if (c == 8) {
-        std::cout << "done";
+        cout << "done";
         goto print;
     }
 nr:
@@ -60,19 +51,27 @@ nr:
 backtrack:
     c--;
     if (c == -1) {
-        std::cout << "hit c = -1";
+        for (int j = 0; j < 8; j++) {
+            for(int k = 0; k < 8; k++) {
+                cout << board[j][k] << " ";
+            }
+            cout << endl;
+        }
+        cout << endl;
+        cout << "hit c = -1" << endl;
         return 0;
     }
     r = 0;
     while (board[r][c] != 1) {
-        board[r][c] = 0;
-        goto nr;
+        r++;
     }
+    board[r][c] = 0;
+    goto nr;
 print:
     for (int j = 0; j < 8; j++) {
         for(int k = 0; k < 8; k++) {
-            std::cout << board[j][k] << " ";
+            cout << board[j][k] << " ";
         }
-        std::cout << std::endl;
+        cout << endl;
     }
 }
