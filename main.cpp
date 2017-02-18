@@ -20,14 +20,14 @@ void print(int array[8][8]) {
 }
 
 int main() {
-    int board[8][8] = {0}, r = -1, c = 0, i = 0;
+    int board[8][8] = {0}, r, c = 0, i = 0;
 
     board[0][0] = 1;
-    print(board);
+//    print(board);
 nc:
     c++;
+    r = -1;
     if (c == 8) {
-        cout << "done";
         goto print;
     }
 nr:
@@ -38,26 +38,20 @@ nr:
         if (board[r][i] == 1)
             goto nr;
     }
-    for (i = 0; i < r; i++) { // column test
-        if (board[i][c] == 1)
-            goto nc;
-    }
     for (i = 1; r - i >= 0 && c - i >= 0; i++) { // up diagonal
         if (board[r - i][c - i] == 1)
             goto nr;
     }
-    for (i = 1; i < 8; i++) { // down diagonal
-        if (board[r + i][c - i] == 1)
+    for (i = 1; r + i <= 7 && c - i >= 0; i++) { // down diagonal
+        if (board[r + i][c - i] == 1) {
             goto nr;
+        }
     }
     board[r][c] = 1;
     goto nc;
 backtrack:
     c--;
     if (c == -1) {
-        print(board);
-        cout << endl;
-        cout << "hit c = -1" << endl;
         return 0;
     }
     r = 0;
