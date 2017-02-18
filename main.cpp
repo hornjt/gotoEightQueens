@@ -9,17 +9,21 @@
 #include <iostream>
 using namespace std;
 
-int main() {
-    int board[8][8] = {0}, r = -1, c = 0, i = 0;
-
-    board[0][0] = 1;
+void print(int array[8][8]) {
     for (int j = 0; j < 8; j++) {
         for(int k = 0; k < 8; k++) {
-            cout << board[j][k] << " ";
+            cout << array[j][k] << " ";
         }
         cout << endl;
     }
     cout << endl;
+}
+
+int main() {
+    int board[8][8] = {0}, r = -1, c = 0, i = 0;
+
+    board[0][0] = 1;
+    print(board);
 nc:
     c++;
     if (c == 8) {
@@ -51,12 +55,7 @@ nr:
 backtrack:
     c--;
     if (c == -1) {
-        for (int j = 0; j < 8; j++) {
-            for(int k = 0; k < 8; k++) {
-                cout << board[j][k] << " ";
-            }
-            cout << endl;
-        }
+        print(board);
         cout << endl;
         cout << "hit c = -1" << endl;
         return 0;
