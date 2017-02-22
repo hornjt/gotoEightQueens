@@ -10,26 +10,24 @@
 using namespace std;
 
 void print(int array[8][8]) {
-    for (int j = 0; j < 8; j++) {
-        for(int k = 0; k < 8; k++) {
-            cout << array[j][k] << " ";
-        }
-        cout << endl;
-    }
-    cout << endl;
+//    for (int j = 0; j < 8; j++) {
+//        for(int k = 0; k < 8; k++) {
+//            cout << array[j][k] << " ";
+//        }
+//        cout << endl;
+//    }
+//    cout << endl;
 }
 
-int findEightQueens(int startingRow, int startingColumn) {
+void findEightQueens(int startingRow, int startingColumn) {
     int board[8][8] = {0}, row, column, i;
     
     board[startingRow][startingColumn] = 1;
 nc:
     column++;
     row = -1;
-    if (column == 8) {
-        print(board);
-        return 0;
-    }
+    if (column == 8)
+        goto print;
 nr:
     row++;
     if (row == 8)
@@ -52,7 +50,7 @@ nr:
 backtrack:
     column--;
     if (column == -1) {
-        return 0;
+        return;
     }
     row = 0;
     while (board[row][column] != 1) {
@@ -60,9 +58,17 @@ backtrack:
     }
     board[row][column] = 0;
     goto nr;
+print:
+    for (int j = 0; j < 8; j++) {
+        for(int k = 0; k < 8; k++) {
+            cout << board[j][k] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
 
 }
 
 int main() {
-    findEightQueens(3, 0);
+    findEightQueens(0, 0);
 }
